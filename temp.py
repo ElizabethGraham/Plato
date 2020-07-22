@@ -15,7 +15,7 @@ pygame.display.set_caption("Plato Alpha")
 #sad = pygame.image.load(r'C:\Users\jtgra\Pictures\Plato\ROBOT_SAD.png') 
 #wink = pygame.image.load(r'C:\Users\jtgra\Pictures\Plato\ROBOT_WINK.png') 
 
-characterEmotions = [pygame.image.load(r'C:\Users\jtgra\Pictures\Plato\ROBOT_HAPPY.png'), pygame.image.load(r'C:\Users\jtgra\Pictures\Plato\ROBOT_SAD.png'), pygame.image.load(r'C:\Users\jtgra\Pictures\Plato\ROBOT_WINK.png')]
+characterEmotions = [pygame.image.load(r'/home/pi/Documents/Plato/Plato-master/plato_pics/ROBOT_HAPPY.png'), pygame.image.load(r'/home/pi/Documents/Plato/Plato-master/plato_pics/ROBOT_SAD.png'), pygame.image.load(r'/home/pi/Documents/Plato/Plato-master/plato_pics/ROBOT_ANGRY.png')]
 
 isHappy = True
 isWinking = False
@@ -65,8 +65,6 @@ def redrawGameWindow():
 # Run until the user asks to quit
 running = True
 while running:
-    clock.tick(27)
-
     # Did the user click the window close button?
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

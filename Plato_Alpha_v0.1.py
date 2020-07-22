@@ -1,6 +1,3 @@
-# Simple pygame program
-
-# Import and initialize the pygame library
 import pygame
 import time
 pygame.init()
@@ -31,6 +28,25 @@ background = pygame.Surface(screen.get_size())
 background = background.convert()
 background.fill(white)
 
+def emotionHappy():
+    print("HAPPY") # Print to console the function is runnning, for debug purposes
+    emotion = 0 # Happy image in characterEmotions image array
+    display_surface.blit(background, (0,0)) # Reset canvas
+    display_surface.blit(characterEmotions[emotion], (0, 0)) # Print the happy emotion picture
+    # Play characterEmotionSound>Happy
+    
+def emotionSad():
+    print("SAD")
+    emotion = 1
+    display_surface.blit(background, (0,0))
+    display_surface.blit(characterEmotions[emotion], (0, 0))
+
+def actionWink():
+    print("WINK")
+    emotion = 2
+    display_surface.blit(background, (0,0))
+    display_surface.blit(characterEmotions[emotion], (0, 0))
+
 # Run until the user asks to quit
 running = True
 while running:
@@ -46,20 +62,11 @@ while running:
     keys = pygame.key.get_pressed()
     
     if keys[pygame.K_SPACE]:
-        print("HAPPY")
-        emotion = 0
-        display_surface.blit(background, (0,0))
-        display_surface.blit(characterEmotions[emotion], (0, 0))
+        emotionHappy()        
     elif keys[pygame.K_RIGHT]:
-        print("WINK")
-        emotion = 2
-        display_surface.blit(background, (0,0))
-        display_surface.blit(characterEmotions[emotion], (0, 0))
+        actionWink()
     elif keys[pygame.K_DOWN]:
-        print("SAD")
-        emotion = 1
-        display_surface.blit(background, (0,0))
-        display_surface.blit(characterEmotions[emotion], (0, 0))
+        emotionSad()
     
     # Flip the display
     pygame.time.delay(100)
