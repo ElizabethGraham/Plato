@@ -1,13 +1,11 @@
 from adafruit_motorkit import MotorKit
-from pynput import keyboard
-
+from  pynput import keyboard
 kit = MotorKit()
 
 kit.motor1.throttle = 0.0
 kit.motor2.throttle = 0.0
 kit.motor3.throttle = 0.0
 kit.motor4.throttle = 0.0
-
 
 def on_press(key):
     try:
@@ -42,7 +40,6 @@ def on_press(key):
         print('special key {0} pressed'.format(
             key))
 
-
 def on_release(key):
     if key == keyboard.Key.esc:
         # Stop listener
@@ -50,70 +47,57 @@ def on_release(key):
     else:
         motorsStop()
         print("Motors Released")
-
-
+    
 def motorsForward():
     kit.motor1.throttle = 1.0
     kit.motor2.throttle = -1.0
     kit.motor3.throttle = 1.0
     kit.motor4.throttle = -1.0
-
-
+    
 def motorsBackward():
     kit.motor1.throttle = -1.0
     kit.motor2.throttle = 1.0
     kit.motor3.throttle = -1.0
     kit.motor4.throttle = 1.0
-
-
+    
 def motorsLeft():
-    kit.motor1.throttle = -1.0
-    kit.motor2.throttle = 1.0
-    kit.motor3.throttle = 1.0
-    kit.motor4.throttle = -1.0
-
-
-def motorsRight():
     kit.motor1.throttle = 1.0
-    kit.motor2.throttle = -1.0
-    kit.motor3.throttle = -1.0
+    kit.motor2.throttle = 1.0
+    kit.motor3.throttle = 0.0
+    kit.motor4.throttle = 0.0
+    
+def motorsRight():
+    kit.motor1.throttle = 0.0
+    kit.motor2.throttle = 0.0
+    kit.motor3.throttle = 1.0
     kit.motor4.throttle = 1.0
-
 
 def motorsStop():
     kit.motor1.throttle = 0.0
     kit.motor2.throttle = 0.0
     kit.motor3.throttle = 0.0
     kit.motor4.throttle = 0.0
-
-
+    
 def motorOneTest():
     kit.motor1.throttle = 1.0
     kit.motor2.throttle = 0.0
     kit.motor3.throttle = 0.0
     kit.motor4.throttle = 0.0
-
-
 def motorTwoTest():
     kit.motor1.throttle = 0.0
     kit.motor2.throttle = 1.0
     kit.motor3.throttle = 0.0
     kit.motor4.throttle = 0.0
-
-
 def motorThreeTest():
     kit.motor1.throttle = 0.0
     kit.motor2.throttle = 0.0
     kit.motor3.throttle = 1.0
     kit.motor4.throttle = 0.0
-
-
 def motorFourTest():
     kit.motor1.throttle = 0.0
     kit.motor2.throttle = 0.0
     kit.motor3.throttle = 0.0
     kit.motor4.throttle = 1.0
-
 
 # ...or, in a non-blocking fashion:
 listener = keyboard.Listener(
