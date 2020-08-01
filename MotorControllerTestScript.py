@@ -3,12 +3,6 @@ from pynput import keyboard
 
 kit = MotorKit()
 
-# Park motors
-kit.motor1.throttle = 0.0
-kit.motor2.throttle = 0.0
-kit.motor3.throttle = 0.0
-kit.motor4.throttle = 0.0
-
 
 # Motor configuration dependant on individual build.
 # Motor 1 = front left
@@ -47,6 +41,7 @@ def motors_right():
     kit.motor4.throttle = 0.0
 
 
+# Park motors
 def motors_stop():
     kit.motor1.throttle = 0.0
     kit.motor2.throttle = 0.0
@@ -81,6 +76,9 @@ def motor_four_test():
     kit.motor3.throttle = 0.0
     kit.motor4.throttle = 1.0
 
+# Start with the motors parked. 
+motors_stop()
+
 
 # Dictionary holding all movement keys and corresponding movement functions
 keypress_dict = {"w": motors_forward, "a": motors_left, "s": motors_backward,
@@ -90,11 +88,12 @@ keypress_dict = {"w": motors_forward, "a": motors_left, "s": motors_backward,
 
 def on_press(key):
     try:
+        # Did a movement key get pressed
         if key.char in keypress_dict:
+            # Run the movement keys corresponding function
             keypress_dict[key.char]()
-    except AttributeError:
-        print('special key {0} pressed'.format(
-            key))
+    except:
+            pass
 
 
 def on_release(key):
@@ -102,11 +101,14 @@ def on_release(key):
         # Stop listener
         return False
     else:
+        # If any key is released, stop motors. 
+        # I think this is better than making a function to stop only on movement key releases
+        # since really any time a key is released the motors should be off.
         motors_stop()
         print("Motors Released")
 
 
-# ...or, in a non-blocking fashion:
+# Initialize the keyboard listener
 listener = keyboard.Listener(
     on_press=on_press,
     on_release=on_release)
