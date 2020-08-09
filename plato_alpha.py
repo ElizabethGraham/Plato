@@ -33,8 +33,7 @@ def change_picture(state):
     # Reset canvas
     display_surface.blit(background, (0, 0))
     # Print the happy emotion picture
-    # display_surface.blit(emotions_script.CHARACTER_EMOTIONS[emotions_script.emotion_state], (0, 0))
-    display_surface.blit(emotions_script.CHARACTER_EMOTIONS[state], (0, 0))
+    display_surface.blit(emotions_script.EMOTION_PICTURES[state], (0, 0))
 
 
 # Run until the user asks to quit
@@ -47,17 +46,13 @@ while running:
             pygame.display.update()
 
     keys = pygame.key.get_pressed()
-    events = pygame.event.get()
-    for event in events:
-        if event.type == pygame.KEYDOWN:
-
-            if keys[pygame.K_SPACE]:
-                emotions_script.emotion_happy()
-                change_picture()
-            elif keys[pygame.K_RIGHT]:
-                emotions_script.emotion_wink()
-            elif keys[pygame.K_DOWN]:
-                emotions_script.emotion_sad()
+    if keys:
+        if keys[pygame.K_SPACE]:
+            change_picture(emotions_script.emotion_happy())
+        elif keys[pygame.K_RIGHT]:
+            change_picture(emotions_script.emotion_wink())
+        elif keys[pygame.K_DOWN]:
+            change_picture(emotions_script.emotion_sad())
 
     # Flip the display
     pygame.time.delay(100)
