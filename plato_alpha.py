@@ -1,12 +1,11 @@
 import pygame
 import time
 import emotions
-# import audio_input
+import audio_input_controller
 # import motor_controller
 # import text_to_speech
 
 pygame.init()
-emotions_script = emotions.Emotions('HAPPY')
 
 # assigning values to X and Y variable 
 X = 360
@@ -33,7 +32,7 @@ def change_picture(state):
     # Reset canvas
     display_surface.blit(background, (0, 0))
     # Print the happy emotion picture
-    display_surface.blit(emotions_script.EMOTION_PICTURES[state], (0, 0))
+    display_surface.blit(emotions.EMOTION_PICTURES[state], (0, 0))
 
 
 # Run until the user asks to quit
@@ -46,13 +45,17 @@ while running:
             pygame.display.update()
 
     keys = pygame.key.get_pressed()
+    # If an emotion key is pressed, change Plato's picture to represent the new emotion
     if keys:
         if keys[pygame.K_SPACE]:
-            change_picture(emotions_script.emotion_happy())
+            change_picture(emotions.emotion_happy())
         elif keys[pygame.K_RIGHT]:
-            change_picture(emotions_script.emotion_wink())
+            change_picture(emotions.emotion_wink())
         elif keys[pygame.K_DOWN]:
-            change_picture(emotions_script.emotion_sad())
+            change_picture(emotions.emotion_sad())
+
+    # If audio input exceeds 8000 peak, change Plato's emotion to scared
+    # if audio_input_controller.init_listener.:
 
     # Flip the display
     pygame.time.delay(100)
