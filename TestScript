@@ -3,19 +3,19 @@ from pynput import keyboard
 
 
 # Motor 1 + 3 are positive facing forward, 2 + 4 are negative facing forward
-def motor(kit1, x, y):
+def motor(kit, x, y):
     return {
         'FRONT': {
-            'LEFT': kit1.motor1,
-            'RIGHT': kit1.motor3
+            'LEFT': kit.motor1,
+            'RIGHT': kit.motor3
         },
         'BACK': {
-            'LEFT': kit1.motor2,
-            'RIGHT': kit1.motor4
+            'LEFT': kit.motor2,
+            'RIGHT': kit.motor4
         }
-    } [x][y]
+    }[x][y]
 
 
-def motors_forward():
-    motor(kit1, 'BACK', 'LEFT')
-    motor(kit1, 'BACK', 'LEFT') = 1.0
+def motors_forward(kit):
+    motor(kit, 'BACK', 'LEFT')
+    motor(kit, 'BACK', 'RIGHT') = 1.0

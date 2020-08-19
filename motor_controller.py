@@ -74,7 +74,7 @@ if __name__ == '__main__':
             if key.char in keypress_dict:
                 # Run the movement keys corresponding function
                 keypress_dict[key.char]()
-        except:
+        except KeyError:
             pass
 
 
