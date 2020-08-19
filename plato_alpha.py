@@ -5,6 +5,7 @@ import emotions
 
 # import motor_controller
 # import text_to_speech
+import emotions_scratch
 
 pygame.init()
 
@@ -29,7 +30,7 @@ background = background.convert()
 background.fill(white)
 
 
-def update_emotion(emotion_state):
+"""def update_emotion(emotion_state):
     # Update all emotion related objects. Change picture, play emotion sound, etc
     # Reset canvas
     display_surface.blit(background, (0, 0))
@@ -41,7 +42,7 @@ def update_emotion(emotion_state):
     try:
         pygame.mixer.Sound.play(emotions.EMOTION_SOUNDS[emotion_state])
     except AttributeError:
-        print("Sound N/A")
+        print("Sound N/A")"""
 
 
 def update_action(action):
@@ -70,7 +71,7 @@ while running:
     if update_action.has_been_called:
         # Default emotion state
         pygame.time.delay(1000)
-        update_emotion(emotions.emotion_happy())
+        emotions_scratch.Plato.update_emotion(display_surface, background, 'HAPPY')
         update_action.has_been_called = False
 
     keys = pygame.key.get_pressed()
@@ -78,13 +79,13 @@ while running:
     # Can change to keypress_dict, this is a work in progress to see flow of thought
     if keys:
         if keys[pygame.K_SPACE]:
-            update_emotion(emotions.emotion_happy())
+            emotions_scratch.Plato.update_emotion(display_surface, background, 'HAPPY')
         elif keys[pygame.K_RIGHT]:
             update_action(actions.action_wink())
             # time.sleep(1)
             # update_emotion(emotions.emotion_happy())
         elif keys[pygame.K_DOWN]:
-            update_emotion(emotions.emotion_sad())
+            emotions_scratch.Plato.update_emotion(display_surface, background, 'SAD')
 
     # If audio input exceeds 8000 peak, change Plato's emotion to scared
     # Flip the display
