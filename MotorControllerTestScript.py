@@ -1,4 +1,4 @@
-from adafruit_motorkit import MotorKit # Error on Windows, functions on Raspberry Pi
+from adafruit_motorkit import MotorKit
 from pynput import keyboard
 
 kit = MotorKit()
